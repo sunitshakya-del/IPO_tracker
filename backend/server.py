@@ -125,8 +125,10 @@ async def delete_account(account_id: str):
 @api_router.post("/ipos", response_model=IPO)
 async def create_ipo(ipo: IPOCreate):
     ipo_dict = ipo.model_dump()
-    profit_loss = (ipo_dict['listing_price'] - ipo_dict['application_price']) * ipo_dict['allotment_quantity']
+    broker_charges = ipo_dict.get('broker_charges', 0) or 0
+    profit_loss = (ipo_dict['listing_price'] - ipo_dict['application_price']) * ipo_dict['allotment_quantity'] - broker_charges
     ipo_dict['profit_loss'] = profit_loss
+    ipo_dict['broker_charges'] = broker_charges
     
     ipo_obj = IPO(**ipo_dict)
     doc = ipo_obj.model_dump()
