@@ -20,7 +20,8 @@ export default function AddIPOSheet({ open, onOpenChange, onSuccess, editData })
     listing_price: "",
     demat_account_id: "",
     application_date: "",
-    listing_date: ""
+    listing_date: "",
+    broker_charges: ""
   });
   const [loading, setLoading] = useState(false);
 
