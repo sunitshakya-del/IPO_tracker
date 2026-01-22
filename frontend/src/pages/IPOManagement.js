@@ -143,7 +143,8 @@ export default function IPOManagement() {
                     <TableHead className="font-semibold text-slate-950 text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'Manrope, sans-serif' }}>App. Price</TableHead>
                     <TableHead className="font-semibold text-slate-950 text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'Manrope, sans-serif' }}>Qty</TableHead>
                     <TableHead className="font-semibold text-slate-950 text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'Manrope, sans-serif' }}>List Price</TableHead>
-                    <TableHead className="font-semibold text-slate-950 text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'Manrope, sans-serif' }}>P&L</TableHead>
+                    <TableHead className="font-semibold text-slate-950 text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'Manrope, sans-serif' }}>Charges</TableHead>
+                    <TableHead className="font-semibold text-slate-950 text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'Manrope, sans-serif' }}>Net P&L</TableHead>
                     <TableHead className="font-semibold text-slate-950 text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'Manrope, sans-serif' }}>Account</TableHead>
                     <TableHead className="font-semibold text-slate-950 text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'Manrope, sans-serif' }}>Date</TableHead>
                     <TableHead className="font-semibold text-slate-950 text-xs sm:text-sm text-right whitespace-nowrap" style={{ fontFamily: 'Manrope, sans-serif' }}>Actions</TableHead>
