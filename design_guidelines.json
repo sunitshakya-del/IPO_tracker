@@ -1,0 +1,171 @@
+{
+  "design_system": {
+    "typography": {
+      "font_family": {
+        "headings": "Manrope, sans-serif",
+        "body": "Inter, sans-serif",
+        "data": "JetBrains Mono, monospace"
+      },
+      "scale": {
+        "h1": "text-4xl md:text-5xl font-bold tracking-tight",
+        "h2": "text-3xl font-semibold tracking-tight",
+        "h3": "text-2xl font-semibold",
+        "body_large": "text-lg leading-relaxed",
+        "body_default": "text-base leading-relaxed",
+        "caption": "text-sm text-muted-foreground",
+        "data_value": "font-mono text-sm md:text-base tracking-wide"
+      },
+      "imports": [
+        "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      ]
+    },
+    "colors": {
+      "palette": {
+        "primary": {
+          "name": "Obsidian",
+          "bg": "bg-slate-950",
+          "text": "text-slate-950"
+        },
+        "background": {
+          "default": "bg-slate-50/50",
+          "card": "bg-white",
+          "subtle": "bg-slate-100"
+        },
+        "semantic": {
+          "profit": {
+            "text": "text-emerald-600",
+            "bg": "bg-emerald-50",
+            "border": "border-emerald-200",
+            "icon": "text-emerald-500"
+          },
+          "loss": {
+            "text": "text-rose-600",
+            "bg": "bg-rose-50",
+            "border": "border-rose-200",
+            "icon": "text-rose-500"
+          },
+          "neutral": {
+            "text": "text-slate-600",
+            "bg": "bg-slate-100",
+            "border": "border-slate-200"
+          }
+        }
+      }
+    },
+    "spacing": {
+      "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+      "section_gap": "gap-8",
+      "card_padding": "p-6 md:p-8"
+    },
+    "visual_enhancers": {
+      "shadows": {
+        "card": "shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300",
+        "float": "shadow-[0_12px_32px_rgba(0,0,0,0.12)]"
+      },
+      "borders": {
+        "subtle": "border border-slate-200/60",
+        "interactive": "border border-slate-200 hover:border-slate-300 transition-colors"
+      },
+      "radius": {
+        "card": "rounded-xl",
+        "button": "rounded-lg"
+      }
+    }
+  },
+  "components": {
+    "layout": {
+      "dashboard_grid": "grid grid-cols-1 md:grid-cols-12 gap-6",
+      "bento_cells": {
+        "summary_large": "col-span-1 md:col-span-12 lg:col-span-8 row-span-2",
+        "stat_card": "col-span-1 md:col-span-6 lg:col-span-4",
+        "list_vertical": "col-span-1 md:col-span-12 lg:col-span-4 row-span-2"
+      }
+    },
+    "ui_mappings": {
+      "data_table": {
+        "component": "Table",
+        "style": "compact",
+        "features": ["sorting", "filtering", "pagination"],
+        "path": "/app/frontend/src/components/ui/table.jsx"
+      },
+      "forms": {
+        "add_ipo": {
+          "component": "Sheet",
+          "trigger_label": "Add New IPO",
+          "description": "Slide-over form for quick data entry without leaving context",
+          "path": "/app/frontend/src/components/ui/sheet.jsx"
+        },
+        "inputs": "Input",
+        "select": "Select",
+        "date_picker": "Calendar"
+      },
+      "feedback": {
+        "toast": "Sonner",
+        "path": "/app/frontend/src/components/ui/sonner.jsx"
+      },
+      "charts": {
+        "library": "Recharts",
+        "types": ["AreaChart (P&L Trend)", "BarChart (Account Wise)", "PieChart (Allocation)"]
+      }
+    }
+  },
+  "pages": {
+    "dashboard": {
+      "sections": [
+        {
+          "name": "Header",
+          "elements": ["Total P&L (Big Number)", "Date Range Filter", "Add IPO Button"]
+        },
+        {
+          "name": "Stats Row",
+          "elements": ["Total Invested", "Current Value", "Active IPOs", "Win Rate %"]
+        },
+        {
+          "name": "Main Chart",
+          "type": "AreaChart",
+          "data": "Cumulative P&L over time"
+        },
+        {
+          "name": "Recent Activity",
+          "type": "Table",
+          "data": "Last 5 IPOs"
+        }
+      ]
+    },
+    "ipo_management": {
+      "layout": "Full width data table",
+      "features": ["Bulk Delete", "Edit Row", "Status Badges (Allotted/Not Allotted)"]
+    },
+    "demat_accounts": {
+      "layout": "Grid of Cards",
+      "card_content": ["Account Name", "Broker Name", "Total Profit from this account"]
+    }
+  },
+  "assets": {
+    "images": [
+      {
+        "category": "login_background",
+        "url": "https://images.unsplash.com/photo-1760239037245-a372db8630f3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHw0fHxhYnN0cmFjdCUyMGZpbmFuY2UlMjBkYXRhJTIwdmlzdWFsaXphdGlvbiUyMG1pbmltYWx8ZW58MHx8fHwxNzY5MDY2NjMxfDA&ixlib=rb-4.1.0&q=85",
+        "description": "Abstract geometric blue pattern for login screen background"
+      }
+    ],
+    "icons": "lucide-react"
+  },
+  "instructions_to_main_agent": [
+    "Use 'JetBrains Mono' for ALL numerical data (prices, P&L, dates) to ensure tabular alignment.",
+    "Implement the 'Add IPO' form inside a 'Sheet' component (Side Drawer) to maintain user context.",
+    "For the P&L calculation: (Listing Price - Application Price) * Allotment Quantity. If Allotment Quantity is 0, P&L is 0.",
+    "Use the defined 'semantic' colors for positive (Emerald) and negative (Rose) values. Do not use generic green/red.",
+    "Ensure the Dashboard is 'dense' but readable. Use 'h-full' on cards to ensure equal height in the grid.",
+    "Add a 'data-testid' to every interactive element (buttons, inputs, rows) for testing.",
+    "Default to Light Mode. Dark mode is optional but not primary.",
+    "Use 'Sonner' for all success/error notifications."
+  ],
+  "universal_guidelines": [
+    "Do not use gradients for text.",
+    "Avoid 'Inter' for headings; use 'Manrope'.",
+    "Use 2-3x more padding than standard Tailwind defaults for a premium feel.",
+    "Never use pure black (#000000); use Slate-950 (#020617).",
+    "Ensure all charts have tooltips and responsive containers."
+  ]
+}
