@@ -203,6 +203,20 @@ export default function AddIPOSheet({ open, onOpenChange, onSuccess, editData })
             </div>
           </div>
 
+          <div className="space-y-2">
+            <Label htmlFor="broker_charges">Broker Charges (₹)</Label>
+            <Input
+              id="broker_charges"
+              data-testid="broker-charges-input"
+              type="number"
+              step="0.01"
+              value={formData.broker_charges}
+              onChange={(e) => setFormData({ ...formData, broker_charges: e.target.value })}
+              placeholder="0.00"
+            />
+            <p className="text-xs text-slate-500">Enter total brokerage + transaction charges</p>
+          </div>
+
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="application_date">Application Date</Label>
