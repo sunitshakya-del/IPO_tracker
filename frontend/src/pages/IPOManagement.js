@@ -53,7 +53,7 @@ export default function IPOManagement() {
     try {
       await axios.delete(`${API}/ipos/${id}`);
       toast.success("IPO deleted successfully");
-      fetchIPOs();
+      await fetchIPOs();
     } catch (error) {
       console.error("Error deleting IPO:", error);
       toast.error("Failed to delete IPO");
