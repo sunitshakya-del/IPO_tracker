@@ -37,7 +37,8 @@ export default function AddIPOSheet({ open, onOpenChange, onSuccess, editData })
           listing_price: editData.listing_price?.toString() || "",
           demat_account_id: editData.demat_account_id || "",
           application_date: editData.application_date || "",
-          listing_date: editData.listing_date || ""
+          listing_date: editData.listing_date || "",
+          broker_charges: editData.broker_charges?.toString() || ""
         });
       } else {
         setFormData({
@@ -48,7 +49,8 @@ export default function AddIPOSheet({ open, onOpenChange, onSuccess, editData })
           listing_price: "",
           demat_account_id: "",
           application_date: "",
-          listing_date: ""
+          listing_date: "",
+          broker_charges: ""
         });
       }
     }
