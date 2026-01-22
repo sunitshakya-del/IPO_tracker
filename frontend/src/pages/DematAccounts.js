@@ -48,7 +48,7 @@ export default function DematAccounts() {
     try {
       await axios.delete(`${API}/accounts/${id}`);
       toast.success("Account deleted successfully");
-      fetchAccounts();
+      await fetchAccounts();
     } catch (error) {
       console.error("Error deleting account:", error);
       toast.error("Failed to delete account");
