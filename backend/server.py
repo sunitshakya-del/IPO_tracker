@@ -51,6 +51,7 @@ class IPO(BaseModel):
     demat_account_id: str
     application_date: str
     listing_date: str
+    broker_charges: float = 0
     profit_loss: float = 0
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
@@ -63,6 +64,7 @@ class IPOCreate(BaseModel):
     demat_account_id: str
     application_date: str
     listing_date: str
+    broker_charges: Optional[float] = 0
 
 class IPOUpdate(BaseModel):
     ipo_name: Optional[str] = None
@@ -73,6 +75,7 @@ class IPOUpdate(BaseModel):
     demat_account_id: Optional[str] = None
     application_date: Optional[str] = None
     listing_date: Optional[str] = None
+    broker_charges: Optional[float] = None
 
 
 @api_router.get("/")
