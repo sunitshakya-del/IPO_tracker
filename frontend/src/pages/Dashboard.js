@@ -75,16 +75,16 @@ export default function Dashboard() {
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           <div 
-            className="col-span-1 md:col-span-6 lg:col-span-4 bg-white rounded-xl p-6 md:p-8 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300 border border-slate-200/60"
+            className="bg-white rounded-xl p-5 sm:p-6 md:p-8 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300 border border-slate-200/60"
             data-testid="total-pl-card"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600 mb-2">Total P&L</p>
+                <p className="text-xs sm:text-sm text-slate-600 mb-2">Total P&L</p>
                 <h2 
-                  className={`text-3xl font-semibold tracking-tight ${
+                  className={`text-2xl sm:text-3xl font-semibold tracking-tight ${
                     stats.total_pl >= 0 ? "text-emerald-600" : "text-rose-600"
                   }`}
                   style={{ fontFamily: 'JetBrains Mono, monospace' }}
@@ -93,103 +93,104 @@ export default function Dashboard() {
                 </h2>
               </div>
               {stats.total_pl >= 0 ? (
-                <TrendingUp className="w-10 h-10 text-emerald-500" />
+                <TrendingUp className="w-8 h-8 sm:w-10 sm:h-10 text-emerald-500" />
               ) : (
-                <TrendingDown className="w-10 h-10 text-rose-500" />
+                <TrendingDown className="w-8 h-8 sm:w-10 sm:h-10 text-rose-500" />
               )}
             </div>
           </div>
 
           <div 
-            className="col-span-1 md:col-span-6 lg:col-span-4 bg-white rounded-xl p-6 md:p-8 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300 border border-slate-200/60"
+            className="bg-white rounded-xl p-5 sm:p-6 md:p-8 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300 border border-slate-200/60"
             data-testid="total-invested-card"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600 mb-2">Total Invested</p>
+                <p className="text-xs sm:text-sm text-slate-600 mb-2">Total Invested</p>
                 <h2 
-                  className="text-3xl font-semibold tracking-tight text-slate-950"
+                  className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-950"
                   style={{ fontFamily: 'JetBrains Mono, monospace' }}
                 >
                   ₹{stats.total_invested.toLocaleString('en-IN')}
                 </h2>
               </div>
-              <DollarSign className="w-10 h-10 text-slate-500" />
+              <DollarSign className="w-8 h-8 sm:w-10 sm:h-10 text-slate-500" />
             </div>
           </div>
 
           <div 
-            className="col-span-1 md:col-span-6 lg:col-span-4 bg-white rounded-xl p-6 md:p-8 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300 border border-slate-200/60"
+            className="bg-white rounded-xl p-5 sm:p-6 md:p-8 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300 border border-slate-200/60"
             data-testid="total-returns-card"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600 mb-2">Total Returns</p>
+                <p className="text-xs sm:text-sm text-slate-600 mb-2">Total Returns</p>
                 <h2 
-                  className="text-3xl font-semibold tracking-tight text-slate-950"
+                  className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-950"
                   style={{ fontFamily: 'JetBrains Mono, monospace' }}
                 >
                   ₹{stats.total_returns.toLocaleString('en-IN')}
                 </h2>
               </div>
-              <Target className="w-10 h-10 text-slate-500" />
+              <Target className="w-8 h-8 sm:w-10 sm:h-10 text-slate-500" />
             </div>
           </div>
 
           <div 
-            className="col-span-1 md:col-span-6 lg:col-span-4 bg-white rounded-xl p-6 md:p-8 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300 border border-slate-200/60"
+            className="bg-white rounded-xl p-5 sm:p-6 md:p-8 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300 border border-slate-200/60"
             data-testid="active-ipos-card"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600 mb-2">Active IPOs</p>
+                <p className="text-xs sm:text-sm text-slate-600 mb-2">Active IPOs</p>
                 <h2 
-                  className="text-3xl font-semibold tracking-tight text-slate-950"
+                  className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-950"
                   style={{ fontFamily: 'JetBrains Mono, monospace' }}
                 >
                   {stats.active_ipos}
                 </h2>
               </div>
-              <Award className="w-10 h-10 text-slate-500" />
+              <Award className="w-8 h-8 sm:w-10 sm:h-10 text-slate-500" />
             </div>
           </div>
 
           <div 
-            className="col-span-1 md:col-span-6 lg:col-span-4 bg-white rounded-xl p-6 md:p-8 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300 border border-slate-200/60"
+            className="bg-white rounded-xl p-5 sm:p-6 md:p-8 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300 border border-slate-200/60"
             data-testid="win-rate-card"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-600 mb-2">Win Rate</p>
+                <p className="text-xs sm:text-sm text-slate-600 mb-2">Win Rate</p>
                 <h2 
-                  className="text-3xl font-semibold tracking-tight text-emerald-600"
+                  className="text-2xl sm:text-3xl font-semibold tracking-tight text-emerald-600"
                   style={{ fontFamily: 'JetBrains Mono, monospace' }}
                 >
                   {stats.win_rate}%
                 </h2>
               </div>
-              <TrendingUp className="w-10 h-10 text-emerald-500" />
+              <TrendingUp className="w-8 h-8 sm:w-10 sm:h-10 text-emerald-500" />
             </div>
           </div>
 
           <div 
-            className="col-span-1 md:col-span-12 lg:col-span-8 bg-white rounded-xl p-6 md:p-8 shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-200/60"
+            className="col-span-1 md:col-span-2 lg:col-span-3 bg-white rounded-xl p-5 sm:p-6 md:p-8 shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-200/60"
             data-testid="recent-ipos-chart"
           >
-            <h3 className="text-2xl font-semibold mb-6 text-slate-950" style={{ fontFamily: 'Manrope, sans-serif' }}>
+            <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-slate-950" style={{ fontFamily: 'Manrope, sans-serif' }}>
               Recent IPO Performance
             </h3>
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="100%" height={250}>
               <AreaChart data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                <XAxis dataKey="name" stroke="#64748b" style={{ fontSize: '12px', fontFamily: 'JetBrains Mono, monospace' }} />
-                <YAxis stroke="#64748b" style={{ fontSize: '12px', fontFamily: 'JetBrains Mono, monospace' }} />
+                <XAxis dataKey="name" stroke="#64748b" style={{ fontSize: '10px', fontFamily: 'JetBrains Mono, monospace' }} />
+                <YAxis stroke="#64748b" style={{ fontSize: '10px', fontFamily: 'JetBrains Mono, monospace' }} />
                 <Tooltip 
                   contentStyle={{ 
                     backgroundColor: 'white', 
                     border: '1px solid #e2e8f0', 
                     borderRadius: '8px',
-                    fontFamily: 'JetBrains Mono, monospace'
+                    fontFamily: 'JetBrains Mono, monospace',
+                    fontSize: '12px'
                   }} 
                 />
                 <Area type="monotone" dataKey="pl" stroke="#10b981" fill="#d1fae5" />
@@ -198,23 +199,24 @@ export default function Dashboard() {
           </div>
 
           <div 
-            className="col-span-1 md:col-span-12 lg:col-span-8 bg-white rounded-xl p-6 md:p-8 shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-200/60"
+            className="col-span-1 md:col-span-2 lg:col-span-3 bg-white rounded-xl p-5 sm:p-6 md:p-8 shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-200/60"
             data-testid="account-wise-pl-chart"
           >
-            <h3 className="text-2xl font-semibold mb-6 text-slate-950" style={{ fontFamily: 'Manrope, sans-serif' }}>
+            <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-slate-950" style={{ fontFamily: 'Manrope, sans-serif' }}>
               Top 5 Accounts by P&L
             </h3>
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="100%" height={250}>
               <BarChart data={accountChartData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                <XAxis dataKey="name" stroke="#64748b" style={{ fontSize: '12px', fontFamily: 'JetBrains Mono, monospace' }} />
-                <YAxis stroke="#64748b" style={{ fontSize: '12px', fontFamily: 'JetBrains Mono, monospace' }} />
+                <XAxis dataKey="name" stroke="#64748b" style={{ fontSize: '10px', fontFamily: 'JetBrains Mono, monospace' }} />
+                <YAxis stroke="#64748b" style={{ fontSize: '10px', fontFamily: 'JetBrains Mono, monospace' }} />
                 <Tooltip 
                   contentStyle={{ 
                     backgroundColor: 'white', 
                     border: '1px solid #e2e8f0', 
                     borderRadius: '8px',
-                    fontFamily: 'JetBrains Mono, monospace'
+                    fontFamily: 'JetBrains Mono, monospace',
+                    fontSize: '12px'
                   }} 
                 />
                 <Bar dataKey="pl" fill="#0f172a" radius={[8, 8, 0, 0]} />
