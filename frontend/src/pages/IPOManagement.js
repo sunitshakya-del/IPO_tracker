@@ -153,13 +153,13 @@ export default function IPOManagement() {
                 <TableBody>
                   {loading ? (
                     <TableRow>
-                      <TableCell colSpan={9} className="text-center py-8 text-slate-600 text-sm">
+                      <TableCell colSpan={10} className="text-center py-8 text-slate-600 text-sm">
                         Loading...
                       </TableCell>
                     </TableRow>
                   ) : filteredIPOs.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={9} className="text-center py-8 text-slate-600 text-sm">
+                      <TableCell colSpan={10} className="text-center py-8 text-slate-600 text-sm">
                         No IPOs found. Add your first IPO to get started.
                       </TableCell>
                     </TableRow>
