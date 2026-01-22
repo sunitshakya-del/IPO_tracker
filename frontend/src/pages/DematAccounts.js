@@ -61,18 +61,18 @@ export default function DematAccounts() {
   };
 
   return (
-    <div className="p-8">
-      <div className="max-w-7xl mx-auto space-y-8">
-        <div className="flex justify-between items-center">
+    <div className="p-4 sm:p-8">
+      <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
             <h1 
-              className="text-4xl md:text-5xl font-bold tracking-tight text-slate-950" 
+              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-950" 
               style={{ fontFamily: 'Manrope, sans-serif' }}
               data-testid="demat-accounts-title"
             >
               Demat Accounts
             </h1>
-            <p className="text-base text-slate-600 mt-2">Manage your {accounts.length} demat accounts</p>
+            <p className="text-sm sm:text-base text-slate-600 mt-2">Manage your {accounts.length} demat accounts</p>
           </div>
           <Button
             onClick={() => {
@@ -80,7 +80,7 @@ export default function DematAccounts() {
               setIsAddAccountOpen(true);
             }}
             data-testid="add-account-button"
-            className="bg-slate-950 hover:bg-slate-800 text-white px-6 py-6 rounded-lg shadow-md transition-all"
+            className="bg-slate-950 hover:bg-slate-800 text-white px-4 sm:px-6 py-4 sm:py-6 rounded-lg shadow-md transition-all w-full sm:w-auto"
           >
             <Plus className="w-5 h-5 mr-2" />
             Add New Account
