@@ -164,8 +164,11 @@ async def update_ipo(ipo_id: str, ipo: IPOUpdate):
     
     if update_data:
         merged = {**existing, **update_data}
-        profit_loss = (merged['listing_price'] - merged['application_price']) * merged['allotment_quantity']
+        broker_charges = merged.get('broker_charges', 0) or 0
+        profit_loss = (merged['listing_price'] - merged['application_price']) * merged['allotment_quantity'] - broker_charges
         update_data['profit_loss'] = profit_loss
+        if 'broker_charges' in update_data:
+            update_data['broker_charges'] = broker_charges
         await db.ipos.update_one({"id": ipo_id}, {"$set": update_data})
     
     updated = await db.ipos.find_one({"id": ipo_id}, {"_id": 0})
