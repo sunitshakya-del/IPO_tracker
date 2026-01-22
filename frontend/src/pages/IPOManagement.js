@@ -77,18 +77,18 @@ export default function IPOManagement() {
   });
 
   return (
-    <div className="p-8">
-      <div className="max-w-7xl mx-auto space-y-8">
-        <div className="flex justify-between items-center">
+    <div className="p-4 sm:p-8">
+      <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
             <h1 
-              className="text-4xl md:text-5xl font-bold tracking-tight text-slate-950" 
+              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-950" 
               style={{ fontFamily: 'Manrope, sans-serif' }}
               data-testid="ipo-management-title"
             >
               IPO Management
             </h1>
-            <p className="text-base text-slate-600 mt-2">Manage all your IPO applications</p>
+            <p className="text-sm sm:text-base text-slate-600 mt-2">Manage all your IPO applications</p>
           </div>
           <Button
             onClick={() => {
@@ -96,16 +96,16 @@ export default function IPOManagement() {
               setIsAddIPOOpen(true);
             }}
             data-testid="add-ipo-button-management"
-            className="bg-slate-950 hover:bg-slate-800 text-white px-6 py-6 rounded-lg shadow-md transition-all"
+            className="bg-slate-950 hover:bg-slate-800 text-white px-4 sm:px-6 py-4 sm:py-6 rounded-lg shadow-md transition-all w-full sm:w-auto"
           >
             <Plus className="w-5 h-5 mr-2" />
             Add New IPO
           </Button>
         </div>
 
-        <div className="bg-white rounded-xl p-6 shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-200/60">
-          <div className="flex gap-4 mb-6 flex-wrap">
-            <div className="flex-1 min-w-[200px]">
+        <div className="bg-white rounded-xl p-4 sm:p-6 shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-200/60">
+          <div className="flex flex-col sm:flex-row gap-4 mb-6">
+            <div className="flex-1">
               <Input
                 placeholder="Search IPO name..."
                 value={searchTerm}
@@ -116,7 +116,7 @@ export default function IPOManagement() {
             </div>
             <Select value={filterAccount} onValueChange={setFilterAccount}>
               <SelectTrigger 
-                className="w-[200px] border-slate-200"
+                className="w-full sm:w-[200px] border-slate-200"
                 data-testid="filter-account-select"
               >
                 <Filter className="w-4 h-4 mr-2" />
