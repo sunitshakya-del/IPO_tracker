@@ -84,7 +84,8 @@ export default function AddIPOSheet({ open, onOpenChange, onSuccess, editData })
         listing_price: parseFloat(formData.listing_price) || 0,
         demat_account_id: formData.demat_account_id,
         application_date: formData.application_date,
-        listing_date: formData.listing_date
+        listing_date: formData.listing_date,
+        broker_charges: parseFloat(formData.broker_charges) || 0
       };
 
       if (editData) {
