@@ -133,77 +133,79 @@ export default function IPOManagement() {
             </Select>
           </div>
 
-          <div className="overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow className="border-slate-200">
-                  <TableHead className="font-semibold text-slate-950" style={{ fontFamily: 'Manrope, sans-serif' }}>IPO Name</TableHead>
-                  <TableHead className="font-semibold text-slate-950" style={{ fontFamily: 'Manrope, sans-serif' }}>Lot Size</TableHead>
-                  <TableHead className="font-semibold text-slate-950" style={{ fontFamily: 'Manrope, sans-serif' }}>Application Price</TableHead>
-                  <TableHead className="font-semibold text-slate-950" style={{ fontFamily: 'Manrope, sans-serif' }}>Allotment Qty</TableHead>
-                  <TableHead className="font-semibold text-slate-950" style={{ fontFamily: 'Manrope, sans-serif' }}>Listing Price</TableHead>
-                  <TableHead className="font-semibold text-slate-950" style={{ fontFamily: 'Manrope, sans-serif' }}>P&L</TableHead>
-                  <TableHead className="font-semibold text-slate-950" style={{ fontFamily: 'Manrope, sans-serif' }}>Account</TableHead>
-                  <TableHead className="font-semibold text-slate-950" style={{ fontFamily: 'Manrope, sans-serif' }}>Listing Date</TableHead>
-                  <TableHead className="font-semibold text-slate-950 text-right" style={{ fontFamily: 'Manrope, sans-serif' }}>Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {loading ? (
-                  <TableRow>
-                    <TableCell colSpan={9} className="text-center py-8 text-slate-600">
-                      Loading...
-                    </TableCell>
+          <div className="overflow-x-auto -mx-4 sm:mx-0">
+            <div className="inline-block min-w-full align-middle px-4 sm:px-0">
+              <Table>
+                <TableHeader>
+                  <TableRow className="border-slate-200">
+                    <TableHead className="font-semibold text-slate-950 text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'Manrope, sans-serif' }}>IPO Name</TableHead>
+                    <TableHead className="font-semibold text-slate-950 text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'Manrope, sans-serif' }}>Lot Size</TableHead>
+                    <TableHead className="font-semibold text-slate-950 text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'Manrope, sans-serif' }}>App. Price</TableHead>
+                    <TableHead className="font-semibold text-slate-950 text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'Manrope, sans-serif' }}>Qty</TableHead>
+                    <TableHead className="font-semibold text-slate-950 text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'Manrope, sans-serif' }}>List Price</TableHead>
+                    <TableHead className="font-semibold text-slate-950 text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'Manrope, sans-serif' }}>P&L</TableHead>
+                    <TableHead className="font-semibold text-slate-950 text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'Manrope, sans-serif' }}>Account</TableHead>
+                    <TableHead className="font-semibold text-slate-950 text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'Manrope, sans-serif' }}>Date</TableHead>
+                    <TableHead className="font-semibold text-slate-950 text-xs sm:text-sm text-right whitespace-nowrap" style={{ fontFamily: 'Manrope, sans-serif' }}>Actions</TableHead>
                   </TableRow>
-                ) : filteredIPOs.length === 0 ? (
-                  <TableRow>
-                    <TableCell colSpan={9} className="text-center py-8 text-slate-600">
-                      No IPOs found. Add your first IPO to get started.
-                    </TableCell>
-                  </TableRow>
-                ) : (
-                  filteredIPOs.map((ipo) => (
-                    <TableRow key={ipo.id} className="border-slate-200" data-testid={`ipo-row-${ipo.id}`}>
-                      <TableCell className="font-medium" style={{ fontFamily: 'JetBrains Mono, monospace' }}>{ipo.ipo_name}</TableCell>
-                      <TableCell style={{ fontFamily: 'JetBrains Mono, monospace' }}>{ipo.lot_size}</TableCell>
-                      <TableCell style={{ fontFamily: 'JetBrains Mono, monospace' }}>₹{ipo.application_price}</TableCell>
-                      <TableCell style={{ fontFamily: 'JetBrains Mono, monospace' }}>{ipo.allotment_quantity}</TableCell>
-                      <TableCell style={{ fontFamily: 'JetBrains Mono, monospace' }}>₹{ipo.listing_price}</TableCell>
-                      <TableCell 
-                        className={ipo.profit_loss >= 0 ? "text-emerald-600 font-semibold" : "text-rose-600 font-semibold"}
-                        style={{ fontFamily: 'JetBrains Mono, monospace' }}
-                      >
-                        ₹{ipo.profit_loss.toLocaleString('en-IN')}
-                      </TableCell>
-                      <TableCell className="text-slate-600">{getAccountName(ipo.demat_account_id)}</TableCell>
-                      <TableCell style={{ fontFamily: 'JetBrains Mono, monospace' }}>{ipo.listing_date}</TableCell>
-                      <TableCell className="text-right">
-                        <div className="flex justify-end gap-2">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleEdit(ipo)}
-                            data-testid={`edit-ipo-${ipo.id}`}
-                            className="hover:bg-slate-100"
-                          >
-                            <Pencil className="w-4 h-4" />
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleDelete(ipo.id)}
-                            data-testid={`delete-ipo-${ipo.id}`}
-                            className="hover:bg-rose-50 hover:text-rose-600"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </Button>
-                        </div>
+                </TableHeader>
+                <TableBody>
+                  {loading ? (
+                    <TableRow>
+                      <TableCell colSpan={9} className="text-center py-8 text-slate-600 text-sm">
+                        Loading...
                       </TableCell>
                     </TableRow>
-                  ))
-                )}
-              </TableBody>
-            </Table>
+                  ) : filteredIPOs.length === 0 ? (
+                    <TableRow>
+                      <TableCell colSpan={9} className="text-center py-8 text-slate-600 text-sm">
+                        No IPOs found. Add your first IPO to get started.
+                      </TableCell>
+                    </TableRow>
+                  ) : (
+                    filteredIPOs.map((ipo) => (
+                      <TableRow key={ipo.id} className="border-slate-200" data-testid={`ipo-row-${ipo.id}`}>
+                        <TableCell className="font-medium text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'JetBrains Mono, monospace' }}>{ipo.ipo_name}</TableCell>
+                        <TableCell className="text-xs sm:text-sm" style={{ fontFamily: 'JetBrains Mono, monospace' }}>{ipo.lot_size}</TableCell>
+                        <TableCell className="text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'JetBrains Mono, monospace' }}>₹{ipo.application_price}</TableCell>
+                        <TableCell className="text-xs sm:text-sm" style={{ fontFamily: 'JetBrains Mono, monospace' }}>{ipo.allotment_quantity}</TableCell>
+                        <TableCell className="text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'JetBrains Mono, monospace' }}>₹{ipo.listing_price}</TableCell>
+                        <TableCell 
+                          className={`text-xs sm:text-sm whitespace-nowrap ${ipo.profit_loss >= 0 ? "text-emerald-600 font-semibold" : "text-rose-600 font-semibold"}`}
+                          style={{ fontFamily: 'JetBrains Mono, monospace' }}
+                        >
+                          ₹{ipo.profit_loss.toLocaleString('en-IN')}
+                        </TableCell>
+                        <TableCell className="text-slate-600 text-xs sm:text-sm whitespace-nowrap">{getAccountName(ipo.demat_account_id)}</TableCell>
+                        <TableCell className="text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'JetBrains Mono, monospace' }}>{ipo.listing_date}</TableCell>
+                        <TableCell className="text-right">
+                          <div className="flex justify-end gap-1 sm:gap-2">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleEdit(ipo)}
+                              data-testid={`edit-ipo-${ipo.id}`}
+                              className="hover:bg-slate-100 h-8 w-8 p-0"
+                            >
+                              <Pencil className="w-3 h-3 sm:w-4 sm:h-4" />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleDelete(ipo.id)}
+                              data-testid={`delete-ipo-${ipo.id}`}
+                              className="hover:bg-rose-50 hover:text-rose-600 h-8 w-8 p-0"
+                            >
+                              <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  )}
+                </TableBody>
+              </Table>
+            </div>
           </div>
         </div>
       </div>
