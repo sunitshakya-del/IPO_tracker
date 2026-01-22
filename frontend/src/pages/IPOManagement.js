@@ -171,6 +171,7 @@ export default function IPOManagement() {
                         <TableCell className="text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'JetBrains Mono, monospace' }}>₹{ipo.application_price}</TableCell>
                         <TableCell className="text-xs sm:text-sm" style={{ fontFamily: 'JetBrains Mono, monospace' }}>{ipo.allotment_quantity}</TableCell>
                         <TableCell className="text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'JetBrains Mono, monospace' }}>₹{ipo.listing_price}</TableCell>
+                        <TableCell className="text-xs sm:text-sm whitespace-nowrap" style={{ fontFamily: 'JetBrains Mono, monospace' }}>₹{ipo.broker_charges || 0}</TableCell>
                         <TableCell 
                           className={`text-xs sm:text-sm whitespace-nowrap ${ipo.profit_loss >= 0 ? "text-emerald-600 font-semibold" : "text-rose-600 font-semibold"}`}
                           style={{ fontFamily: 'JetBrains Mono, monospace' }}
