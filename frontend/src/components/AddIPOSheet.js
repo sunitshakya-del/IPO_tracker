@@ -18,6 +18,7 @@ export default function AddIPOSheet({ open, onOpenChange, onSuccess, editData })
     application_price: "",
     allotment_quantity: "",
     listing_price: "",
+    sell_price: "",
     demat_account_id: "",
     application_date: "",
     listing_date: "",
