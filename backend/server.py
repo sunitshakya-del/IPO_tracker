@@ -199,8 +199,12 @@ async def get_dashboard_stats():
     ipos = await db.ipos.find({}, {"_id": 0}).to_list(1000)
     accounts = await db.demat_accounts.find({}, {"_id": 0}).to_list(1000)
     
+    for ipo in ipos:
+        if 'sell_price' not in ipo or ipo.get('sell_price') is None:
+            ipo['sell_price'] = ipo.get('listing_price')
+    
     total_invested = sum(ipo['application_price'] * ipo['allotment_quantity'] for ipo in ipos)
-    total_returns = sum(ipo['listing_price'] * ipo['allotment_quantity'] for ipo in ipos)
+    total_returns = sum(ipo.get('sell_price', ipo['listing_price']) * ipo['allotment_quantity'] for ipo in ipos)
     total_pl = sum(ipo['profit_loss'] for ipo in ipos)
     active_ipos = len(ipos)
     win_count = sum(1 for ipo in ipos if ipo['profit_loss'] > 0)
