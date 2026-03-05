@@ -157,6 +157,8 @@ async def get_ipos(
     for ipo in ipos:
         if isinstance(ipo.get('created_at'), str):
             ipo['created_at'] = datetime.fromisoformat(ipo['created_at'])
+        if 'sell_price' not in ipo or ipo.get('sell_price') is None:
+            ipo['sell_price'] = ipo.get('listing_price')
     return ipos
 
 @api_router.put("/ipos/{ipo_id}", response_model=IPO)
