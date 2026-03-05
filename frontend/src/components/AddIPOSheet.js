@@ -208,6 +208,21 @@ export default function AddIPOSheet({ open, onOpenChange, onSuccess, editData })
           </div>
 
           <div className="space-y-2">
+            <Label htmlFor="sell_price">Sell Price (₹) *</Label>
+            <Input
+              id="sell_price"
+              data-testid="sell-price-input"
+              type="number"
+              step="0.01"
+              value={formData.sell_price}
+              onChange={(e) => setFormData({ ...formData, sell_price: e.target.value })}
+              placeholder="0.00"
+              required
+            />
+            <p className="text-xs text-slate-500">Actual price at which you sold the IPO shares</p>
+          </div>
+
+          <div className="space-y-2">
             <Label htmlFor="broker_charges">Broker Charges (₹)</Label>
             <Input
               id="broker_charges"
