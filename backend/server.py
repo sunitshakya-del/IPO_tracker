@@ -48,7 +48,7 @@ class IPO(BaseModel):
     application_price: float
     allotment_quantity: int
     listing_price: float
-    sell_price: float
+    sell_price: Optional[float] = None
     demat_account_id: str
     application_date: str
     listing_date: str
