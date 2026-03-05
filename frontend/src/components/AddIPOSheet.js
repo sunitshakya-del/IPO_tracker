@@ -85,6 +85,7 @@ export default function AddIPOSheet({ open, onOpenChange, onSuccess, editData })
         application_price: parseFloat(formData.application_price) || 0,
         allotment_quantity: parseInt(formData.allotment_quantity) || 0,
         listing_price: parseFloat(formData.listing_price) || 0,
+        sell_price: parseFloat(formData.sell_price) || 0,
         demat_account_id: formData.demat_account_id,
         application_date: formData.application_date,
         listing_date: formData.listing_date,
