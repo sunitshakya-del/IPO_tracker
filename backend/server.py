@@ -48,6 +48,7 @@ class IPO(BaseModel):
     application_price: float
     allotment_quantity: int
     listing_price: float
+    sell_price: float
     demat_account_id: str
     application_date: str
     listing_date: str
@@ -61,6 +62,7 @@ class IPOCreate(BaseModel):
     application_price: float
     allotment_quantity: int
     listing_price: float
+    sell_price: float
     demat_account_id: str
     application_date: str
     listing_date: str
@@ -72,6 +74,7 @@ class IPOUpdate(BaseModel):
     application_price: Optional[float] = None
     allotment_quantity: Optional[int] = None
     listing_price: Optional[float] = None
+    sell_price: Optional[float] = None
     demat_account_id: Optional[str] = None
     application_date: Optional[str] = None
     listing_date: Optional[str] = None
