@@ -1,6 +1,11 @@
 {
-  "name": "frontend",
-  "version": "0.1.0",
+  "name": "ipo-tracker",
+  "productName": "IPO Tracker",
+  "version": "1.0.0",
+  "description": "IPO Profit & Loss Manager - Desktop Application",
+  "author": "Your Name",
+  "main": "public/electron.js",
+  "homepage": "./",
   "private": true,
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
@@ -58,7 +63,46 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test"
+    "test": "craco test",
+    "electron": "electron .",
+    "electron-dev": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron-build": "yarn build && electron-builder",
+    "dist": "yarn build && electron-builder --win --x64",
+    "pack": "electron-builder --dir"
+  },
+  "build": {
+    "appId": "com.ipotracker.app",
+    "productName": "IPO Tracker",
+    "files": [
+      "build/**/*",
+      "public/electron.js",
+      "node_modules/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "../backend",
+        "to": "backend",
+        "filter": ["**/*", "!__pycache__", "!*.pyc", "!test_*"]
+      }
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
   },
   "browserslist": {
     "production": [
@@ -77,6 +121,11 @@
     "@craco/craco": "^7.1.0",
     "@eslint/js": "9.23.0",
     "autoprefixer": "^10.4.20",
+    "concurrently": "8.2.2",
+    "cross-env": "7.0.3",
+    "electron": "28.0.0",
+    "electron-builder": "24.13.3",
+    "electron-is-dev": "2.0.0",
     "eslint": "9.23.0",
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
@@ -84,7 +133,8 @@
     "eslint-plugin-react-hooks": "5.2.0",
     "globals": "15.15.0",
     "postcss": "^8.4.49",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.4.17",
+    "wait-on": "7.2.0"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
