@@ -64,8 +64,8 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "electron": "electron .",
-    "electron-dev": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron": "electron . --no-sandbox",
+    "electron-dev": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron . --no-sandbox --disable-gpu\"",
     "electron-build": "yarn build && electron-builder",
     "dist": "yarn build && electron-builder --win --x64",
     "pack": "electron-builder --dir"
@@ -73,6 +73,7 @@
   "build": {
     "appId": "com.ipotracker.app",
     "productName": "IPO Tracker",
+    "copyright": "Copyright © 2026",
     "files": [
       "build/**/*",
       "public/electron.js",
@@ -82,26 +83,46 @@
       {
         "from": "../backend",
         "to": "backend",
-        "filter": ["**/*", "!__pycache__", "!*.pyc", "!test_*"]
+        "filter": ["**/*", "!__pycache__", "!*.pyc", "!test_*", "!.env"]
       }
     ],
     "directories": {
-      "buildResources": "assets"
+      "buildResources": "assets",
+      "output": "dist"
     },
     "win": {
       "target": [
         {
           "target": "nsis",
           "arch": ["x64"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
         }
       ],
-      "icon": "assets/icon.ico"
+      "icon": "assets/icon.ico",
+      "artifactName": "${productName}-Setup-${version}.${ext}",
+      "publisherName": "IPO Tracker",
+      "verifyUpdateCodeSignature": false
     },
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
+      "allowElevation": true,
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico",
+      "installerHeaderIcon": "assets/icon.ico",
       "createDesktopShortcut": true,
-      "createStartMenuShortcut": true
+      "createStartMenuShortcut": true,
+      "shortcutName": "IPO Tracker",
+      "perMachine": false,
+      "deleteAppDataOnUninstall": false,
+      "runAfterFinish": true,
+      "include": "build/installer.nsh"
+    },
+    "portable": {
+      "artifactName": "${productName}-Portable-${version}.${ext}"
     }
   },
   "browserslist": {
