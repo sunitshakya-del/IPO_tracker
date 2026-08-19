@@ -1,9 +1,14 @@
 import { useState } from "react";
-import { Outlet, Link, useLocation } from "react-router-dom";
-import { LayoutDashboard, TrendingUp, Wallet, Menu, X } from "lucide-react";
+import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
+import { LayoutDashboard, TrendingUp, Wallet, Menu, X, LogOut } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+
+const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 export default function Layout() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const isActive = (path) => location.pathname === path;
@@ -16,6 +21,20 @@ export default function Layout() {
 
   const handleNavClick = () => {
     setMobileMenuOpen(false);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await fetch(`${API_URL}/api/auth/logout`, {
+        method: 'POST',
+        credentials: 'include'
+      });
+      toast.success('Logged out successfully');
+      navigate('/login');
+    } catch (error) {
+      console.error('Logout error:', error);
+      toast.error('Logout failed');
+    }
   };
 
   return (
@@ -65,6 +84,16 @@ export default function Layout() {
             );
           })}
         </nav>
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-slate-200">
+          <Button
+            onClick={handleLogout}
+            variant="ghost"
+            className="w-full justify-start text-slate-600 hover:text-red-600 hover:bg-red-50"
+          >
+            <LogOut className="w-5 h-5 mr-3" />
+            Logout
+          </Button>
+        </div>
       </aside>
 
       {/* Mobile Sidebar */}
@@ -103,6 +132,19 @@ export default function Layout() {
                 );
               })}
             </nav>
+            <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-slate-200">
+              <Button
+                onClick={() => {
+                  handleLogout();
+                  handleNavClick();
+                }}
+                variant="ghost"
+                className="w-full justify-start text-slate-600 hover:text-red-600 hover:bg-red-50"
+              >
+                <LogOut className="w-5 h-5 mr-3" />
+                Logout
+              </Button>
+            </div>
           </aside>
         </>
       )}

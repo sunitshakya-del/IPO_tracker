@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "@/utils/api";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
 
 export default function AddAccountSheet({ open, onOpenChange, onSuccess, editData }) {
   const [formData, setFormData] = useState({
@@ -43,10 +40,10 @@ export default function AddAccountSheet({ open, onOpenChange, onSuccess, editDat
     setLoading(true);
     try {
       if (editData) {
-        await axios.put(`${API}/accounts/${editData.id}`, formData);
+        await api.put(`/accounts/${editData.id}`, formData);
         toast.success("Account updated successfully");
       } else {
-        await axios.post(`${API}/accounts`, formData);
+        await api.post('/accounts', formData);
         toast.success("Account added successfully");
       }
       

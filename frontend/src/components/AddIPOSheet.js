@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "@/utils/api";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
 
 export default function AddIPOSheet({ open, onOpenChange, onSuccess, editData }) {
   const [accounts, setAccounts] = useState([]);
@@ -61,7 +58,7 @@ export default function AddIPOSheet({ open, onOpenChange, onSuccess, editData })
 
   const fetchAccounts = async () => {
     try {
-      const response = await axios.get(`${API}/accounts`);
+      const response = await api.get('/accounts');
       setAccounts(response.data);
     } catch (error) {
       console.error("Error fetching accounts:", error);
@@ -93,10 +90,10 @@ export default function AddIPOSheet({ open, onOpenChange, onSuccess, editData })
       };
 
       if (editData) {
-        await axios.put(`${API}/ipos/${editData.id}`, payload);
+        await api.put(`/ipos/${editData.id}`, payload);
         toast.success("IPO updated successfully");
       } else {
-        await axios.post(`${API}/ipos`, payload);
+        await api.post('/ipos', payload);
         toast.success("IPO added successfully");
       }
       

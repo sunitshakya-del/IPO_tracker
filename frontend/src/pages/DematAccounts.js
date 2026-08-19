@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "@/utils/api";
 import { Plus, Pencil, Trash2, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AddAccountSheet from "@/components/AddAccountSheet";
 import { toast } from "sonner";
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
 
 export default function DematAccounts() {
   const [accounts, setAccounts] = useState([]);
@@ -19,8 +16,8 @@ export default function DematAccounts() {
     try {
       setLoading(true);
       const [accountsRes, statsRes] = await Promise.all([
-        axios.get(`${API}/accounts`),
-        axios.get(`${API}/dashboard/stats`)
+        api.get('/accounts'),
+        api.get('/dashboard/stats')
       ]);
       
       setAccounts(accountsRes.data);
@@ -46,7 +43,7 @@ export default function DematAccounts() {
     if (!window.confirm("Are you sure you want to delete this account?")) return;
     
     try {
-      await axios.delete(`${API}/accounts/${id}`);
+      await api.delete(`/accounts/${id}`);
       toast.success("Account deleted successfully");
       await fetchAccounts();
     } catch (error) {

@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "@/utils/api";
 import { Plus, TrendingUp, TrendingDown, DollarSign, Target, Award } from "lucide-react";
 import { AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { Button } from "@/components/ui/button";
 import AddIPOSheet from "@/components/AddIPOSheet";
 import { toast } from "sonner";
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
 
 export default function Dashboard() {
   const [stats, setStats] = useState(null);
@@ -17,7 +14,7 @@ export default function Dashboard() {
   const fetchStats = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${API}/dashboard/stats`);
+      const response = await api.get('/dashboard/stats');
       setStats(response.data);
     } catch (error) {
       console.error("Error fetching stats:", error);

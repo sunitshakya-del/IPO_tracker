@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "@/utils/api";
 import { Plus, Pencil, Trash2, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,9 +7,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import AddIPOSheet from "@/components/AddIPOSheet";
 import { toast } from "sonner";
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
 
 export default function IPOManagement() {
   const [ipos, setIpos] = useState([]);
@@ -23,7 +20,7 @@ export default function IPOManagement() {
   const fetchIPOs = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${API}/ipos`);
+      const response = await api.get('/ipos');
       setIpos(response.data);
     } catch (error) {
       console.error("Error fetching IPOs:", error);
@@ -35,7 +32,7 @@ export default function IPOManagement() {
 
   const fetchAccounts = async () => {
     try {
-      const response = await axios.get(`${API}/accounts`);
+      const response = await api.get('/accounts');
       setAccounts(response.data);
     } catch (error) {
       console.error("Error fetching accounts:", error);
@@ -51,7 +48,7 @@ export default function IPOManagement() {
     if (!window.confirm("Are you sure you want to delete this IPO?")) return;
     
     try {
-      await axios.delete(`${API}/ipos/${id}`);
+      await api.delete(`/ipos/${id}`);
       toast.success("IPO deleted successfully");
       await fetchIPOs();
     } catch (error) {
