@@ -3,6 +3,12 @@ const path = require('path');
 const isDev = require('electron-is-dev');
 const { spawn } = require('child_process');
 
+// Fix for running as root (required in some environments)
+if (process.platform === 'linux') {
+  app.commandLine.appendSwitch('no-sandbox');
+  app.commandLine.appendSwitch('disable-gpu');
+}
+
 let mainWindow;
 let backendProcess;
 
